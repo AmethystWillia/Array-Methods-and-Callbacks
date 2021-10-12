@@ -17,7 +17,7 @@ console.log(`Task 1b: ${finals2014[0]["Away Team Name"]}`);
 console.log(`Task 1c: ${finals2014[0]["Home Team Goals"]}`);
 
 //(d) Away Team goals for 2014 world cup final
-console.log(`Task 1d: ${finals2014[0]["Home Team Goals"]}`);
+console.log(`Task 1d: ${finals2014[0]["Away Team Goals"]}`);
 
 //(e) Winner of 2014 world cup final */
 console.log(`Task 1a: ${finals2014[0]["Win conditions"]}`);
@@ -30,13 +30,14 @@ Use getFinals to do the following:
 
 hint - you should be looking at the stage key inside of the objects
 */
-const madeToFinals = [];
-
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(array) {
+    const madeToFinals = array.filter(function(item) {
+        return item["Stage"] === "Final";
+    });
+    return madeToFinals;
 }
 
-
+console.log(getFinals(fifaData))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
