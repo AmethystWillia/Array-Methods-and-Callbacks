@@ -4,18 +4,43 @@ const { fifaData } = require('./fifa.js')
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
-fifaData.filter(function(item){
+const fifa2014 = fifaData.filter(function(item){
     return item.Year === 2014;
 })
 //(a) Home Team name for 2014 world cup final
+const homeTeamNames2014 = fifa2014.map(function(item) {
+    return item["Home Team Name"];
+});
+
+//console.log(homeTeamNames2014);
 
 //(b) Away Team name for 2014 world cup final
+const awayTeamNames2014 = fifa2014.map(function(item) {
+    return item["Away Team Name"];
+});
+
+//console.log(awayTeamNames2014);
 
 //(c) Home Team goals for 2014 world cup final
+const homeTeamGoals2014 = fifa2014.map(function(item) {
+    return item["Home Team Goals"];
+});
+
+//console.log(homeTeamGoals2014);
 
 //(d) Away Team goals for 2014 world cup final
+const awayTeamGoals2014 = fifa2014.map(function(item) {
+    return item["Away Team Goals"];
+});
+
+//console.log(awayTeamGoals2014);
 
 //(e) Winner of 2014 world cup final */
+const winnerOf2014 = fifa2014.map(function(item) {
+    return item["Home Team Goals"];
+});
+
+//console.log(winnerOf2014);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
