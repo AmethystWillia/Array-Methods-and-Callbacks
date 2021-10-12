@@ -52,7 +52,7 @@ function getYears(array, finalscb) {
     return years;
 }
 
-//console.log(getYears(fifaData, getFinals));
+console.log(getYears(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
@@ -89,14 +89,33 @@ Use the higher-order function getWinnersByYear to do the following:
 3. Receive a callback function getWinners from task 4
 4. Return an array of strings that say "In {year}, {country} won the world cup!" 
 
+Use .map - use index of one array and item of other array
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
-}
+function getWinnersByYear(array, yearscb, winnerscb) {
+    const years = yearscb(array, getFinals);
+    const winners = winnerscb(array, getFinals);
 
+    // Combining years and winners to try to .filter or .map them, whichever works
+    const yearsAndWinners = years.map(function(item, index) {
+        return [item, winners[index]];
+    });
+    // This is the good stuff
+    const properStatement = yearsAndWinners.map(function(item) {
+        return `In ${item[0]}, ${item[1]} won the world cup!`
+    });
 
+    /* The code that gets me the grade but I think is not what was wanted of me
+    const statement = [];
+    for (let i = 0; i < winners.length; i++) {
+        statement.push(`In ${years[i]}, ${winners[i]} won the world cup!`);
+    }
+    */
+    return properStatement;
+};
+
+console.log(getWinnersByYear(fifaData, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
@@ -109,11 +128,33 @@ Use the higher order function getAverageGoals to do the following:
 */
 
 function getAverageGoals(finalscb) {
-   /* code here */
-}
+    const homeGoals = finalscb.map(function(item) {
+        return item["Home Team Goals"]
+    });
+    const awayGoals = finalscb.map(function(item) {
+        return item["Away Team Goals"]
+    });
+    
+    /* I do not think this is right lol
+    const combinedGoals = homeGoals.concat(awayGoals);
+    const averageGoals = combinedGoals.reduce(function(acc, item) {
+        return (acc + item) / combinedGoals.length;
+    });
+    */
 
+    const homeAverage = homeGoals.reduce(function(acc, item) {
+        return (acc + item) / homeGoals.length;
+    }, 0);
+    const awayAverage = awayGoals.reduce(function(acc, item) {
+        return (acc + item) / awayGoals.length;
+    }, 0);
 
+    const averageGoals = homeAverage + awayAverage;
 
+    return averageGoals.toFixed(2);
+};
+
+console.log(getAverageGoals(getFinals(fifaData)));
 
 /// 🥅 STRETCH 🥅 ///
 
