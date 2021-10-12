@@ -102,7 +102,7 @@ function getWinnersByYear(array, yearscb, winnerscb) {
         return [item, winners[index]];
     });
     // This is the good stuff
-    const properStatement = yearsAndWinners.map(function(item) {
+    const statement = yearsAndWinners.map(function(item) {
         return `In ${item[0]}, ${item[1]} won the world cup!`
     });
 
@@ -112,7 +112,7 @@ function getWinnersByYear(array, yearscb, winnerscb) {
         statement.push(`In ${years[i]}, ${winners[i]} won the world cup!`);
     }
     */
-    return properStatement;
+    return statement;
 };
 
 console.log(getWinnersByYear(fifaData, getYears, getWinners));
