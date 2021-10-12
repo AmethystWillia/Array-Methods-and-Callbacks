@@ -128,30 +128,10 @@ Use the higher order function getAverageGoals to do the following:
 */
 
 function getAverageGoals(finalscb) {
-    const homeGoals = finalscb.map(function(item) {
-        return item["Home Team Goals"]
-    });
-    const awayGoals = finalscb.map(function(item) {
-        return item["Away Team Goals"]
-    });
-    
-    /* I do not think this is right lol
-    const combinedGoals = homeGoals.concat(awayGoals);
-    const averageGoals = combinedGoals.reduce(function(acc, item) {
-        return (acc + item) / combinedGoals.length;
-    });
-    */
-
-    const homeAverage = homeGoals.reduce(function(acc, item) {
-        return (acc + item) / homeGoals.length;
-    }, 0);
-    const awayAverage = awayGoals.reduce(function(acc, item) {
-        return (acc + item) / awayGoals.length;
-    }, 0);
-
-    const averageGoals = homeAverage + awayAverage;
-
-    return averageGoals.toFixed(2);
+    const addedGoals = finalscb.reduce(function(acc, item) {
+        return (acc + item["Home Team Goals"] + item["Away Team Goals"]);
+    },0);
+    return (addedGoals / finalscb.length).toFixed(2);
 };
 
 console.log(getAverageGoals(getFinals(fifaData)));
