@@ -20,7 +20,7 @@ console.log(`Task 1c: ${finals2014[0]["Home Team Goals"]}`);
 console.log(`Task 1d: ${finals2014[0]["Away Team Goals"]}`);
 
 //(e) Winner of 2014 world cup final */
-console.log(`Task 1a: ${finals2014[0]["Win conditions"]}`);
+console.log(`Task 1e: ${finals2014[0]["Win conditions"]}`);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -37,7 +37,7 @@ function getFinals(array) {
     return madeToFinals;
 }
 
-console.log(getFinals(fifaData))
+//console.log(getFinals(fifaData))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -52,7 +52,7 @@ function getYears(array, finalscb) {
     return years;
 }
 
-console.log(getYears(fifaData, getFinals));
+//console.log(getYears(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
@@ -61,11 +61,26 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
-}
+function getWinners(array, finalscb) {
+    const homeWins = finalscb(array).filter(function(item) {
+        return item["Home Team Goals"] > item["Away Team Goals"];
+    });
+    const awayWins = finalscb(array).filter(function(item) {
+        return item["Away Team Goals"] > item["Home Team Goals"];
+    });
 
+    const homeTeams = homeWins.map(function(item) {
+        return item["Home Team Name"]
+    });
+    const awayTeams = awayWins.map(function(item) {
+        return item["Away Team Name"]
+    });
 
+    const winners = homeTeams.concat(awayTeams);
+    return winners;
+};
+
+console.log(getWinners(fifaData, getFinals))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -93,7 +108,7 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
+function getAverageGoals(finalscb) {
    /* code here */
 }
 
